@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import { registerUser } from '@/api';
+
 export default {
   data() {
     return {
@@ -27,7 +29,11 @@ export default {
   },
   methods: {
     submitForm() {
-      console.log('form submitted');
+      registerUser({
+        username: this.username,
+        password: this.password,
+        nickname: this.nickname,
+      });
     },
   },
 };
