@@ -3,7 +3,7 @@
     <div class="form-wrapper form-wrapper-sm">
       <form @submit.prevent="submitForm" class="form">
         <div>
-          <label for="username">id:</label>
+          <label for="username">ID:</label>
           <input id="username" type="text" v-model="username" />
           <p class="validation-text">
             <span class="warning" v-if="!isUsernameValid && username">
@@ -12,7 +12,7 @@
           </p>
         </div>
         <div>
-          <label for="password">pw:</label>
+          <label for="password">PW:</label>
           <input id="password" type="text" v-model="password" />
         </div>
         <button
@@ -54,10 +54,9 @@ export default {
           username: this.username,
           password: this.password,
         });
-        this.logMessage = `${data.user.username}님 환영합니다.`;
+        this.$router.push('/main');
       } catch (error) {
         this.logMessage = error.response.data;
-      } finally {
         this.initForm();
       }
     },
