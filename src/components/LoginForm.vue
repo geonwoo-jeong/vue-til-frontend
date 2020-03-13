@@ -54,6 +54,7 @@ export default {
           username: this.username,
           password: this.password,
         });
+        this.$store.commit('setUsername', data.user.username);
         this.$router.push('/main');
       } catch (error) {
         this.logMessage = error.response.data;
