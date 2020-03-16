@@ -1,42 +1,20 @@
 import axios from 'axios';
 import { setInterceptors } from './common/interceptors';
 
+function createInstance() {
+  return axios.create({
+    baseURL: process.env.VUE_APP_API_URL,
+  });
+}
+
 /**
  * Axios Instance Initialize
  */
-function createInstance() {
+function createInstanceWithAuth(url) {
   const instance = axios.create({
-    baseURL: process.env.VUE_APP_API_URL,
+    baseURL: `${process.env.VUE_APP_API_URL}${url}`,
   });
   return setInterceptors(instance);
 }
-const instance = createInstance();
-
-/**
- * Member Register API
- * @param {userData} userData
- */
-function registerUser(userData) {
-  return instance.post('signup', userData);
-}
-
-/**
- * Member Login API
- * @param {userData} userData
- */
-function loginUser(userData) {
-  return instance.post('login', userData);
-}
-
-/**
- * Get Learn Note API
- */
-function fetchPosts() {
-  return instance.get('posts');
-}
-
-function createPost(postData) {
-  return instance.post('posts', postData);
-}
-
-export { registerUser, loginUser, fetchPosts, createPost };
+export const instance = createInstance();
+export const posts = createInstanceWithAuth('posts');
