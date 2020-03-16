@@ -11,4 +11,8 @@ function createPost(postData) {
   return instance.post('/', postData);
 }
 
-export { fetchPosts, createPost };
+function deletePost(postId) {
+  return instance.delete(postId);
+}
+
+export { fetchPosts, createPost, deletePost };
